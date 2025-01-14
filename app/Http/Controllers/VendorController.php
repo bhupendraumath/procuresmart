@@ -64,6 +64,17 @@ class VendorController extends Controller
             $log['name'] = Auth::user()->name;
             $log['date'] = date('Y-m-d');
             $post['vendor_log'] = json_encode($log) . $user->vendor_log;
+
+        }
+        if($request->status=='Approve'){
+            $post['company_code'] = $request->company_code;
+            $post['plant'] = $request->plant;
+            $post['purchorg'] = $request->purchorg;
+            $post['payment_terms'] = $request->payment_terms;
+            $post['recon_account'] = $request->recon_account;
+            $post['vendoraccgrp'] = $request->vendoraccgrp;
+            $post['schemagroup'] = $request->schemagroup;
+            $post['inco_terms'] = $request->inco_terms;
         }
         DB::table('vendor_details')
             ->where('id', $request->id) // Specify the condition to find the record to update
@@ -76,7 +87,12 @@ class VendorController extends Controller
             $data['vendor_user_id'] = $request->user_id;
             DB::table('remarks')->insertGetId($data);
         }
-
+        if ($request->status == 'Approve') {
+            $event['event_name'] = 'vendor-approvel';
+            $event['event_description'] = 'Vendor has been approved by ' . Auth::user()->name;
+            $event['event_table'] = 'vendor_details';
+            DB::table('event_log')->insertGetId($event);
+        }
         return redirect()->route('vendor.approve')
             ->with('success', 'Details saved successfully');
     }

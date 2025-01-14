@@ -58,10 +58,10 @@
 
 
                                 <div class="form-row mb-4">
-                                    <label for="title" class="col-4 col-form-label">Title <span
+                                    <label for="titleds" class="col-4 col-form-label">Title <span
                                             class="mandatory">*</span></label>
                                     <div class="col-8">
-                                        <select id="title" name="title"
+                                        <select id="titleds" name="title"
                                             class="form-control form-control-user tab-field">
                                             <option value="Company" @selected(!empty($user->title) && $user->title == 'Company')>Company</option>
                                             <option value="Mr." @selected(!empty($user->title) && $user->title == 'Mr.')>Mr.</option>
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
-                                    <label for="company_name" class="col-4 col-form-label">Company Name <span
+                                    <label for="company_name" class="col-4 col-form-label" id="company_namedt">Company Name <span
                                             class="mandatory">*</span></label>
                                     <div class="col-8">
                                         <input class="form-control form-control-user tab-field" type="text"
@@ -624,6 +624,15 @@
     //   evt.currentTarget.firstElementChild.className += " w3-border-red";
     // }
     $(document).ready(function() {
+
+        $('#titleds').change(function() {
+    var selectedValue = $(this).val(); // Get the value of the selected option
+    if($(this).val()=='Company'){
+        $('#company_namedt').html('Company Name <span class="mandatory">*</span>');
+    }else{
+        $('#company_namedt').html('Name <span class="mandatory">*</span>');
+    }
+  });
         //------------function for progress bar-------------
         /* commented by ag 4-Jan
          $(".next-step").click(function() {

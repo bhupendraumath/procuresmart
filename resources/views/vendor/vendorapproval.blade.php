@@ -267,9 +267,9 @@
                             <div class="form-row mb-4">
                                         <label for="exampleFormControlSelect2" class="col-4 col-form-label">Select Action</label>
                                         <div class="col-8">
-                                            <select class="form-control form-control-solid" id="status" name="status">
-                                                <option value="Request Resubmission">Request Resubmission </option>
+                                            <select class="form-control form-control-solid" id="statusData" name="status">
                                                 <option value="Approve">Approve</option>
+                                                <option value="Request Resubmission">Request Resubmission </option>
                                                 <option value="Reject">Reject</option>                                            
                                             </select>
                                         </div>
@@ -286,6 +286,100 @@
                                         <textarea class="form-control form-control-solid" id="exampleFormControlTextarea1" rows="2" name="internal_remark"></textarea>
                                         </div> 
                                     </div>
+                                    <div id="appids">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Accounting Information</h6>
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <label for="name" class="col-4 col-form-label">Company Code </label>
+                                        <div class="col-8">
+                                            <select id="inputState" class="form-control form-control-user" name="company_code">
+                                             
+                                            @foreach ($companies as  $company)
+                                                <option value="{{$company->code}}">{{$company->code}}-{{$company->name}}</option>
+                                            @endforeach  
+                                            
+                                            </select>
+                                        </div>                    
+                                    </div>
+                                    <div class="form-row mb-4">                
+                                            <label for="name" class="col-4 col-form-label">Supply Plant</label>
+                                            <div class="col-8">
+                                                <select id="inputState" class="form-control form-control-user" name="plant">
+                                                    @foreach ($plants as  $plant)
+                                                        <option value="{{$plant->code}}">{{$plant->code}}-{{$plant->name}}</option>
+                                                    @endforeach                                           
+                                                </select>
+                                            </div> 
+                                        </div>
+                                        <div class="form-row mb-4">                
+                                            <label for="name" class="col-4 col-form-label">Purchase Organization</label>
+                                            <div class="col-8">
+                                                <select id="inputState" class="form-control form-control-user" name="purchorg">
+                                                    @foreach ($purcorgzations as  $value)
+                                                        <option value="{{$value->code}}">{{$value->code}}-{{$value->name}}</option>
+                                                    @endforeach                                                  
+                                                </select>
+                                            </div> 
+                                        </div>
+                                        <div class="form-row mb-4">                
+                                            <label for="name" class="col-4 col-form-label">Payment Terms</label>
+                                            <div class="col-8">
+                                                <select id="inputState" class="form-control form-control-user" name="payment_terms">
+                                                    <option value="Net30" selected>Net 30</option>
+                                                    <option value="Net60">Net 60</option>
+                                                    <option value="2/10 Net 30">2% Discount if Paid in 10 Days, Due in 30 Days</option>
+                                                    <option value="EOM">End of the Month</option>
+                                                    <option value="15days">15 Days from Invoice Date</option>
+                                                    <option value="DueOnReceipt">Due on Receipt</option>
+                                                    <option value="COD">Cash on Delivery</option>
+                                                    <option value="Quarterly">Quarterly Payments</option>
+                                                    <option value="AdvancePayment">Advance Payment Required</option>
+                                                    <option value="Monthly">Monthly Payments</option> 
+                                                </select>
+                                            </div> 
+                                        </div>
+
+                                        <div class="form-row mb-4">  
+                                            <label for="name" class="col-4 col-form-label">Reconciliation Account<span class="mandatory">*</span></label>
+                                                <div class="col-8">
+                                                    <select id="inputState" class="form-control form-control-user" name="recon_account">
+                                                    <!-- <option>Choose...</option> -->
+                                                    <option value="1628542">Sundry Creditors Dom-other inputs</option>
+                                                    <option value="1628550">Sundry Creditors Dom-Packing Materials</option>
+                                                </select>
+                                                </div>                
+                                            </div>
+                                            <div class="form-row mb-4">                
+                                                    <label for="name" class="col-4 col-form-label">Account Group</label>
+                                                    <div class="col-8">
+                                                        <select id="inputState" class="form-control form-control-user" name="vendoraccgrp">
+                                                            <option value="YB01">Domestic Vendors</option>
+            
+                                                        </select>
+                                                    </div> 
+                                                </div>
+                                                <div class="form-row mb-4">                
+                                                    <label for="name" class="col-4 col-form-label">Schema Group</label>
+                                                    <div class="col-8">
+                                                        <select id="schemagroup" class="form-control form-control-user" name="schemagroup">
+                                                            <option value="ZD">ZD-Domestic</option>
+                                                            <option value="ZI">ZI-Imported</option>
+                                                            <option value="ZW">Work Contract</option>
+                                                        </select>
+                                                    </div> 
+                                                </div>
+                                                <div class="form-row mb-4">
+                                                    <label for="exampleFormControlSelect2" class="col-4 col-form-label">Inco Terms</label>
+                                                    <div class="col-8">
+                                                        <select class="form-control form-control-user" id="status" name="inco_terms">
+                                                            <option value="EXW">EXW </option>
+                                                       
+                                                        </select>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                          </div>
                   <input type="hidden"name="id" value="{{$vendor->id??null}}">
                   <input type="hidden"name="user_id" value="{{$vendor->user_id??null}}">
                                     <div class="form-row mb-4">
@@ -300,7 +394,7 @@
             </div>
            <!------------------------->           
             <!------------------------->
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-2">
                         <div class="card-header py-3">
@@ -415,7 +509,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
            <!------------------------->
             
               
@@ -451,6 +545,15 @@
     $(document).ready(function() 
     {
   
+  $('#statusData').change(function() {
+    var selectedValue = $(this).val(); // Get the value of the selected option
+    if($(this).val()!='Approve'){
+        $('#appids').hide();
+    }else{
+        $('#appids').show();
+    }
+  });
+
   $("#panmodal").click(function () {
     $('#confirmationModal').modal('show');
   });
