@@ -53,15 +53,15 @@ class AdminVendorController extends Controller
         $data['purcorgzations']                 = $purch_organizations;
         $data['user'] = DB::table('users')->where('id', $request->id)->first();
 
-        $data['upload_pan'] = DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'PAN'])->first();
+        $data['upload_pan'] = DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'PAN'])->first();
 
-        $data['upload_gstin'] = DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'GSTIN'])->first();
+        $data['upload_gstin'] = DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'GSTIN'])->first();
 
 
-        $data['upload_msme_certificate'] = DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'MSME Certificate'])->first();
+        $data['upload_msme_certificate'] = DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'MSME Certificate'])->first();
 
-        $data['upload_cancelled_cheque'] = DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'Cancelled Cheque'])->first();
-        $data['upload_exemption_certificate'] = DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'Exemption Certificate'])->first();
+        $data['upload_cancelled_cheque'] = DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Cancelled Cheque'])->first();
+        $data['upload_exemption_certificate'] = DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Exemption Certificate'])->first();
         $data['remarks'] = DB::table('remarks')->where('vendor_user_id', $vendor->user_id)->get();
 
         return view('vendor.vendorapproval', $data);

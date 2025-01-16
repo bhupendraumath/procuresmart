@@ -22,15 +22,15 @@ class VendorController extends Controller
         $data['materialgroup'] = $materialgroup;
         $vendor = DB::table('vendor_details')->where('user_id', Auth::user()->id)->first();
         $data['user'] = $vendor;
-        $data['upload_pan'] = (!empty($vendor->id)) ? DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'PAN'])->first() : [];
+        $data['upload_pan'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'PAN'])->first() : [];
 
-        $data['upload_gstin'] = (!empty($vendor->id)) ? DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'GSTIN'])->first() : [];
+        $data['upload_gstin'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'GSTIN'])->first() : [];
 
 
-        $data['upload_msme_certificate'] = (!empty($vendor->id)) ? DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'MSME Certificate'])->first() : [];
+        $data['upload_msme_certificate'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'MSME Certificate'])->first() : [];
 
-        $data['upload_cancelled_cheque'] = (!empty($vendor->id)) ? DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'Cancelled Cheque'])->first() : [];
-        $data['upload_exemption_certificate'] = (!empty($vendor->id)) ? DB::table('verder_document')->where(['user_id' => $vendor->user_id, 'type' => 'Exemption Certificate'])->first() : [];
+        $data['upload_cancelled_cheque'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Cancelled Cheque'])->first() : [];
+        $data['upload_exemption_certificate'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Exemption Certificate'])->first() : [];
 
 
 
@@ -44,6 +44,18 @@ class VendorController extends Controller
     public function vendor_profile()
     {
         $materialgroup = DB::table('material_groups')->get();
+        $vendor = DB::table('vendor_details')->where('user_id', Auth::user()->id)->first();
+        $data['user'] = $vendor;
+        $data['upload_pan'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'PAN'])->first() : [];
+
+        $data['upload_gstin'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'GSTIN'])->first() : [];
+
+
+        $data['upload_msme_certificate'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'MSME Certificate'])->first() : [];
+
+        $data['upload_cancelled_cheque'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Cancelled Cheque'])->first() : [];
+        $data['upload_exemption_certificate'] = (!empty($vendor->id)) ? DB::table('vendor_document')->where(['user_id' => $vendor->user_id, 'type' => 'Exemption Certificate'])->first() : [];
+
         $data['materialgroup'] = $materialgroup;
         return view('vendor.vendorprofile', $data);
     }
@@ -64,9 +76,8 @@ class VendorController extends Controller
             $log['name'] = Auth::user()->name;
             $log['date'] = date('Y-m-d');
             $post['vendor_log'] = json_encode($log) . $user->vendor_log;
-
         }
-        if($request->status=='Approve'){
+        if ($request->status == 'Approve') {
             $post['company_code'] = $request->company_code;
             $post['plant'] = $request->plant;
             $post['purchorg'] = $request->purchorg;
@@ -105,12 +116,7 @@ class VendorController extends Controller
         $log['status'] = 'Draft';
         $log['name'] = Auth::user()->name;
         $log['date'] = date('Y-m-d');
-        if (!empty($user)) {
-            $post['vendor_log'] = json_encode($log) . $user->vendor_log;
-            DB::table('vendor_details')->where('user_id', Auth::user()->id)->delete();
-        } else {
-            $post['vendor_log'] = json_encode($log);
-        }
+
 
         $post['title'] = $data['title'];
         $post['user_id'] = Auth::user()->id;
@@ -136,10 +142,21 @@ class VendorController extends Controller
         $post['bank_account'] = $data['bank_account'];
         $post['bank_name'] = $data['bank_name'];
         $post['bank_ifsc'] = $data['bank_ifsc'];
-        $post['status'] = $data['status'];
+        if (!empty($data['slugtype']) && $data['slugtype'] == 'profile') {
+        } else {
+            $post['status'] = $data['status'];
+        }
+        if (!empty($user)) {
+            $post['vendor_log'] = json_encode($log) . $user->vendor_log;
+            DB::table('vendor_details')->where('user_id', Auth::user()->id)->update($post);
+            //  DB::table('vendor_details')->where('user_id', Auth::user()->id)->delete();
+            $saveVedorDetails = $user->id;
+        } else {
+            $post['vendor_log'] = json_encode($log);
+            $saveVedorDetails = DB::table('vendor_details')->insertGetId($post);
+        }
 
 
-        $saveVedorDetails = DB::table('vendor_details')->insertGetId($post);
         // Array of file fields and their respective document types
         $documentFields = [
             'upload_pan' => 'PAN',
@@ -166,8 +183,8 @@ class VendorController extends Controller
             if (!empty($data[$field])) {
                 // Store the file and get its path
                 $filePath = $request->file($field)->store('uploads', 'public');
-                DB::table('verder_document')->where(['user_id' => Auth::user()->id, 'type' => $type])->delete();
-                // Prepare data for the verder_document table
+                DB::table('vendor_document')->where(['user_id' => Auth::user()->id, 'type' => $type])->delete();
+                // Prepare data for the vendor_document table
                 $insertData[] = [
                     'vender_id' => $saveVedorDetails,
                     'type' => $type,
@@ -181,10 +198,36 @@ class VendorController extends Controller
             }
         }
         if (!empty($insertData)) {
-            DB::table('verder_document')->insert($insertData);
+            DB::table('vendor_document')->insert($insertData);
         }
-
+        if (!empty($data['slugtype']) && $data['slugtype'] == 'profile') {
+            return redirect()->route('vendor.profile')
+                ->with('success', 'Details updated successfully');
+        }
         return redirect()->route('vendor.update')
             ->with('success', 'Details saved successfully');
+    }
+
+    public function actionChangePassword(Request $request)
+    {
+        // Validate the input fields
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        // Get the currently authenticated user
+        $user = Auth::user();
+
+        // Check if the current password matches the user's password
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect');
+        }
+
+        // Update the password
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+        return redirect()->back()->with('success', 'Password changed successfully');
+
     }
 }

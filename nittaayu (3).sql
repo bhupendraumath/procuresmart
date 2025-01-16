@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2025 at 07:51 PM
+-- Generation Time: Jan 16, 2025 at 09:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:14:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:9:\"role-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:11:\"role-create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:9:\"role-edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:11:\"role-delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:9:\"user-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:11:\"user-create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:9:\"user-edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:11:\"user-delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:8;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:11:\"vendor-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:4;i:1;i:7;i:2;i:8;}}i:9;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:13:\"active-vendor\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:5;}}i:10;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:15:\"inactive-vendor\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:6;}}i:11;a:4:{s:1:\"a\";i:26;s:1:\"b\";s:19:\"vendor-profile-view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:5;}}i:12;a:3:{s:1:\"a\";i:27;s:1:\"b\";s:14:\"vendor-profile\";s:1:\"c\";s:3:\"web\";}i:13;a:4:{s:1:\"a\";i:30;s:1:\"b\";s:14:\"vendor-approve\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:4;i:1;i:7;i:2;i:8;}}}s:5:\"roles\";a:6:{i:0;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:5:\"Admin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:4;s:1:\"b\";s:14:\"Purchase Admin\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:7;s:1:\"b\";s:13:\"Function Head\";s:1:\"c\";s:3:\"web\";}i:3;a:3:{s:1:\"a\";i:8;s:1:\"b\";s:3:\"CFO\";s:1:\"c\";s:3:\"web\";}i:4;a:3:{s:1:\"a\";i:5;s:1:\"b\";s:6:\"Vendor\";s:1:\"c\";s:3:\"web\";}i:5;a:3:{s:1:\"a\";i:6;s:1:\"b\";s:19:\"Not Approved Vendor\";s:1:\"c\";s:3:\"web\";}}}', 1736879937);
+('spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:14:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:9:\"role-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:11:\"role-create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:9:\"role-edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:11:\"role-delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:9:\"user-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:11:\"user-create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:9:\"user-edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:11:\"user-delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:2;}}i:8;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:11:\"vendor-list\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:4;i:1;i:7;i:2;i:8;}}i:9;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:13:\"active-vendor\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:5;}}i:10;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:15:\"inactive-vendor\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:6;}}i:11;a:4:{s:1:\"a\";i:26;s:1:\"b\";s:19:\"vendor-profile-view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:5;}}i:12;a:3:{s:1:\"a\";i:27;s:1:\"b\";s:14:\"vendor-profile\";s:1:\"c\";s:3:\"web\";}i:13;a:4:{s:1:\"a\";i:30;s:1:\"b\";s:14:\"vendor-approve\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:4;i:1;i:7;i:2;i:8;}}}s:5:\"roles\";a:6:{i:0;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:5:\"Admin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:4;s:1:\"b\";s:14:\"Purchase Admin\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:7;s:1:\"b\";s:13:\"Function Head\";s:1:\"c\";s:3:\"web\";}i:3;a:3:{s:1:\"a\";i:8;s:1:\"b\";s:3:\"CFO\";s:1:\"c\";s:3:\"web\";}i:4;a:3:{s:1:\"a\";i:5;s:1:\"b\";s:6:\"Vendor\";s:1:\"c\";s:3:\"web\";}i:5;a:3:{s:1:\"a\";i:6;s:1:\"b\";s:19:\"Not Approved Vendor\";s:1:\"c\";s:3:\"web\";}}}', 1737143321);
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,30 @@ CREATE TABLE `companies` (
 
 INSERT INTO `companies` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
 (1, 'Nitta Gelatin India Ltd.', '1000', '2024-12-23 06:15:48', '2024-12-23 06:15:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_log`
+--
+
+CREATE TABLE `event_log` (
+  `id` int(11) NOT NULL,
+  `event_name` varchar(250) DEFAULT NULL,
+  `event_description` varchar(250) DEFAULT NULL,
+  `event_table` varchar(250) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_log`
+--
+
+INSERT INTO `event_log` (`id`, `event_name`, `event_description`, `event_table`, `created_at`, `updated_at`) VALUES
+(1, 'vendor-approvel', 'Vendor has been approved by Purchase Manager', 'vendor_details', '2025-01-14 18:32:57', '2025-01-14 18:34:10'),
+(2, 'vendor-approvel', 'Vendor has been approved by Purchase Manager', 'vendor_details', '2025-01-14 19:06:14', '2025-01-14 19:06:14'),
+(3, 'vendor-approvel', 'Vendor has been approved by Purchase Manager', 'vendor_details', '2025-01-14 19:07:56', '2025-01-14 19:07:56');
 
 -- --------------------------------------------------------
 
@@ -632,7 +656,12 @@ CREATE TABLE `remarks` (
 
 INSERT INTO `remarks` (`id`, `vendor_user_id`, `comment`, `created_at`, `user_id`, `updated_at`, `notes`, `user_name`) VALUES
 (3, 13, 'all is good', '2025-01-13 18:23:20', 11, '2025-01-13 18:23:20', 'need some changes', 'Purchase Manager'),
-(4, 13, 'all this working', '2025-01-13 18:45:50', 11, '2025-01-13 18:45:50', 'all this good', 'Purchase Manager');
+(4, 13, 'all this working', '2025-01-13 18:45:50', 11, '2025-01-13 18:45:50', 'all this good', 'Purchase Manager'),
+(5, 13, 'all details correct and mark', '2025-01-14 18:32:35', 11, '2025-01-14 18:32:35', 'all details correct', 'Purchase Manager'),
+(6, 13, 'all details correct and mark', '2025-01-14 18:32:57', 11, '2025-01-14 18:32:57', 'all details correct', 'Purchase Manager'),
+(7, 13, 'final data', '2025-01-14 19:06:14', 11, '2025-01-14 19:06:14', 'final data', 'Purchase Manager'),
+(8, 13, 'tesr2', '2025-01-14 19:07:19', 11, '2025-01-14 19:07:19', 'test', 'Purchase Manager'),
+(9, 13, 'apporaved by Head', '2025-01-14 19:07:56', 11, '2025-01-14 19:07:56', 'apporaved by Head', 'Purchase Manager');
 
 -- --------------------------------------------------------
 
@@ -714,8 +743,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('euEPs0avtAAGf6INEf1B1l6WNcMcxsrMXrXphuW2', 13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib2NyVmphRlZCNFF1SDR4dDUwQ2NwRmdoWUtJUjR0MzdIY1lYdEhKVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sb2NhbGhvc3QvUHJvY3VyZXNtYXJ0L3B1YmxpYy92ZW5kb3JvbmJvYXJkaW5nIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTM7fQ==', 1736793956),
-('VnkVkgDR218NUqWIBoTkkpUwtg8BCJ7PV88H7zFA', 11, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUloyOXZVSDRGdUVIYXZodm5VU0JXdXpqNWZYYmZOQUdneTdQZkhCciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9sb2NhbGhvc3QvUHJvY3VyZXNtYXJ0L3B1YmxpYy9hcHByb3Zlbm93P2lkPTEzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1736793977);
+('EFT8t3dcIQaZs1G4gg9Cc3xOlaUGNYSvB5aySWE1', 13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNUZCa3lObDcwRzN1cVpWamhFOTluVUtrOFJmUW52NkxGdFN5WVc4aSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTA6Imh0dHA6Ly9sb2NhbGhvc3QvUHJvY3VyZXNtYXJ0L3B1YmxpYy92ZW5kb3Jwcm9maWxlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTM7fQ==', 1737058080);
 
 -- --------------------------------------------------------
 
@@ -746,7 +774,7 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `email_verified_at`, `pas
 (4, NULL, 'admin', 'admin@gmail.com', NULL, '$2y$12$Cm3IeojLyc56Mckb/YfzLuzkUMgwkIOpKnvEI7hSwIeC5Lwl7iBSS', NULL, NULL, NULL, NULL, '2024-11-08 04:36:15', '2024-11-08 04:36:15'),
 (11, NULL, 'Purchase Manager', 'purchasemanager@gmail.com', NULL, '$2y$12$gLhQGngSMJb0f9XpbihWauXL3jEP5YQLwUXjByu2XLd2ClNwi/HzC', NULL, NULL, NULL, NULL, '2024-11-13 07:35:05', '2024-11-13 07:35:05'),
 (12, 5, 'vendor', 'vendor@gmail.com', NULL, '$2y$12$c9oId0rZUWxroxZirHEw4eHTFp6jzErOaKuKg8T6w4wtKHmUTbEBO', NULL, NULL, NULL, NULL, '2024-11-19 09:28:24', '2024-11-19 09:28:24'),
-(13, 5, 'Not Approved Vendor', 'vendor0@gmail.com', NULL, '$2y$12$gLhQGngSMJb0f9XpbihWauXL3jEP5YQLwUXjByu2XLd2ClNwi/HzC', NULL, NULL, NULL, NULL, '2024-11-19 09:29:04', '2024-11-25 07:24:54'),
+(13, 5, 'Not Approved Vendor', 'vendor0@gmail.com', NULL, '$2y$12$KnLglFM.VllcqW059HSIEuoHLOFnvuhfZvJIUUs9wsnxFofrU91fG', NULL, NULL, NULL, NULL, '2024-11-19 09:29:04', '2025-01-16 14:35:57'),
 (14, NULL, 'Function Head', 'functionhead@gmail.com', NULL, '$2y$12$JPOrtXGWRXZxMHpVhZeFt.UPQWn1wtSEgwjatUfYx0Hj0oJHoVE3G', NULL, NULL, NULL, NULL, '2024-12-30 08:46:43', '2024-12-30 08:46:43'),
 (15, NULL, 'CFO', 'cfo@gmail.com', NULL, '$2y$12$D9vNn2omh.e9/6Xwavxoy.9/g39EJcCvvgijqazMLShtDTLJD4QBu', NULL, NULL, NULL, NULL, '2024-12-30 08:48:09', '2024-12-30 08:48:09');
 
@@ -806,15 +834,46 @@ CREATE TABLE `vendor_details` (
   `profile_status` varchar(100) DEFAULT NULL,
   `internal_note` text DEFAULT NULL,
   `internal_remark` text DEFAULT NULL,
-  `vendor_log` text DEFAULT NULL
+  `vendor_log` text DEFAULT NULL,
+  `plant` varchar(200) DEFAULT NULL,
+  `schemagroup` varchar(200) DEFAULT NULL,
+  `inco_terms` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vendor_details`
 --
 
-INSERT INTO `vendor_details` (`id`, `user_id`, `vendor_code`, `company_code`, `purchorg`, `vendoraccgrp`, `title`, `name1`, `name2`, `addressline1`, `addressline2`, `addressline3`, `city`, `postcode`, `district`, `country_code`, `region_code`, `mobileno`, `email`, `pannum`, `gstin`, `recon_account`, `order_currency`, `payment_terms`, `payment_method`, `bank_country`, `bank_key`, `bank_name`, `bank_account`, `bankacct_holder`, `bank_swift`, `bank_ifsc`, `status`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `company_name`, `vendor_category`, `location`, `contant_person_name`, `designation`, `msme_category`, `state`, `pin`, `pan_number`, `profile_status`, `internal_note`, `internal_remark`, `vendor_log`) VALUES
-(49, '13', '1000', NULL, NULL, NULL, 'Mr.', NULL, NULL, 'indore1', 'indore2', 'indore3', 'indoree', NULL, 'indore', 'IN', NULL, '756456454', 'john@gmail.com', NULL, 'dfdsfewr', NULL, NULL, 'Select Payment Terms', 'T-bank', NULL, NULL, 'boi', 'rewrwere3433', NULL, NULL, '4543534', 'Approve', '2025-01-13 18:41:39', '2025-01-13 18:45:50', NULL, NULL, 'Codiant', NULL, NULL, 'john due', 'software engineer', 'Medium Enterprise', '14', '445454', '44r4333re', NULL, 'all this good', 'all this working', '{\"added_id\":11,\"status\":\"Approve\",\"name\":\"Purchase Manager\",\"date\":\"2025-01-13\"}{\"added_id\":13,\"status\":\"Draft\",\"date\":\"2025-01-13\"}{\"added_id\":13,\"status\":\"Draft\",\"date\":\"2025-01-13\"}');
+INSERT INTO `vendor_details` (`id`, `user_id`, `vendor_code`, `company_code`, `purchorg`, `vendoraccgrp`, `title`, `name1`, `name2`, `addressline1`, `addressline2`, `addressline3`, `city`, `postcode`, `district`, `country_code`, `region_code`, `mobileno`, `email`, `pannum`, `gstin`, `recon_account`, `order_currency`, `payment_terms`, `payment_method`, `bank_country`, `bank_key`, `bank_name`, `bank_account`, `bankacct_holder`, `bank_swift`, `bank_ifsc`, `status`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `company_name`, `vendor_category`, `location`, `contant_person_name`, `designation`, `msme_category`, `state`, `pin`, `pan_number`, `profile_status`, `internal_note`, `internal_remark`, `vendor_log`, `plant`, `schemagroup`, `inco_terms`) VALUES
+(50, '13', '1000', NULL, NULL, NULL, 'Company', NULL, NULL, 'indore54', 'indore', 'indore', 'indore', NULL, 'indore', 'IN', NULL, '46454545', 'test@gmail.com', NULL, '443rf4', NULL, NULL, 'Net 60', 'T-bank', NULL, NULL, '344der', '4fefer', NULL, NULL, '4354t4', 'Approve', '2025-01-16 19:05:36', '2025-01-16 20:07:54', NULL, NULL, 'tcs44', NULL, NULL, 'smite64', 'RF', 'Medium Enterprise', '14', '65454', '43fmf65', NULL, NULL, NULL, '{\"added_id\":13,\"status\":\"Draft\",\"name\":\"Not Approved Vendor\",\"date\":\"2025-01-16\"}{\"added_id\":13,\"status\":\"Draft\",\"name\":\"Not Approved Vendor\",\"date\":\"2025-01-16\"}{\"added_id\":13,\"status\":\"Draft\",\"name\":\"Not Approved Vendor\",\"date\":\"2025-01-16\"}{\"added_id\":13,\"status\":\"Draft\",\"name\":\"Not Approved Vendor\",\"date\":\"2025-01-16\"}', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor_document`
+--
+
+CREATE TABLE `vendor_document` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `vender_id` int(11) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `file_path` text NOT NULL,
+  `file_name` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vendor_document`
+--
+
+INSERT INTO `vendor_document` (`id`, `user_id`, `vender_id`, `type`, `file_path`, `file_name`, `created_at`, `updated_at`) VALUES
+(45, 13, 50, 'GSTIN', 'uploads/gJ5AtkiJi0svdngHQGTnZpxrkSYQj5QWN6DlOFEn.jpg', NULL, '2025-01-16 13:35:36', '2025-01-16 13:35:36'),
+(46, 13, 50, 'MSME Certificate', 'uploads/x62YQ2YGKhsPKmKZaDloAyLz4HGebw44t2WL2xBO.jpg', NULL, '2025-01-16 13:35:36', '2025-01-16 13:35:36'),
+(47, 13, 50, 'Cancelled Cheque', 'uploads/kx9KrQa7jR7UXYXrgOeRKff9Q5HYfsYaarVTg3xC.jpg', NULL, '2025-01-16 13:35:36', '2025-01-16 13:35:36'),
+(48, 13, 50, 'Exemption Certificate', 'uploads/Vk3wcrU1VaZ0mpbH6RSMhNoIhPophpPcT4ByERsI.jpg', NULL, '2025-01-16 13:35:36', '2025-01-16 13:35:36'),
+(49, 13, 50, 'PAN', 'uploads/B4yBjwSMDCwc4OOO9VNxWcDsYChcvKXIJIc9mPUl.jpg', NULL, '2025-01-16 14:07:37', '2025-01-16 14:07:37');
 
 -- --------------------------------------------------------
 
@@ -851,34 +910,6 @@ INSERT INTO `vendor_otps` (`id`, `vendor_id`, `otp_type`, `otp`, `created_at`, `
 (13, 1, 'Email', 3510, '2024-12-31 02:16:12', '2024-12-31 02:16:12'),
 (16, 1, 'Mobile', 5821, '2024-12-31 03:36:31', '2024-12-31 03:36:31');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `verder_document`
---
-
-CREATE TABLE `verder_document` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `vender_id` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `file_path` text NOT NULL,
-  `file_name` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `verder_document`
---
-
-INSERT INTO `verder_document` (`id`, `user_id`, `vender_id`, `type`, `file_path`, `file_name`, `created_at`, `updated_at`) VALUES
-(39, 13, 41, 'GSTIN', 'uploads/GkvHGgS2G1N7t5Z97YnGWhexikPYdkxdeioEAASL.jpg', NULL, '2025-01-12 13:50:18', '2025-01-12 13:50:18'),
-(40, 13, 41, 'MSME Certificate', 'uploads/8WpopQLpILrSfhFgbTBAOkDxAjypZBNNfRXQmnsg.jpg', NULL, '2025-01-12 13:50:18', '2025-01-12 13:50:18'),
-(41, 13, 41, 'Cancelled Cheque', 'uploads/2NCpTwjfLyE2gTq7OgjYTpEdBTNFFVOCMC8HkT0A.jpg', NULL, '2025-01-12 13:50:18', '2025-01-12 13:50:18'),
-(42, 13, 41, 'Exemption Certificate', 'uploads/XV0USAiuBBrCQp0k8cC4WwdaLUAppFC2Ks3b5Zft.jpg', NULL, '2025-01-12 13:50:18', '2025-01-12 13:50:18'),
-(43, 13, 42, 'PAN', 'uploads/7sSSLC4SLAXqTd1ustkae6u5dMLEw3ZuK4Vxlsej.jpg', NULL, '2025-01-12 13:50:58', '2025-01-12 13:50:58');
-
 --
 -- Indexes for dumped tables
 --
@@ -899,6 +930,12 @@ ALTER TABLE `cache_locks`
 -- Indexes for table `companies`
 --
 ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_log`
+--
+ALTER TABLE `event_log`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1028,15 +1065,15 @@ ALTER TABLE `vendor_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `vendor_otps`
+-- Indexes for table `vendor_document`
 --
-ALTER TABLE `vendor_otps`
+ALTER TABLE `vendor_document`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `verder_document`
+-- Indexes for table `vendor_otps`
 --
-ALTER TABLE `verder_document`
+ALTER TABLE `vendor_otps`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1048,6 +1085,12 @@ ALTER TABLE `verder_document`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `event_log`
+--
+ALTER TABLE `event_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1107,7 +1150,7 @@ ALTER TABLE `purchase_organizations`
 -- AUTO_INCREMENT for table `remarks`
 --
 ALTER TABLE `remarks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1125,6 +1168,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `vendor_document`
+--
+ALTER TABLE `vendor_document`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
@@ -1132,12 +1181,6 @@ ALTER TABLE `vendor_details`
 --
 ALTER TABLE `vendor_otps`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `verder_document`
---
-ALTER TABLE `verder_document`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables

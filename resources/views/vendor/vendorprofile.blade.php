@@ -1,5 +1,8 @@
 
 <x-app-layout>
+  @php
+  $user = DB::table('vendor_details')->where('user_id',Auth::user()->id)->first();
+  @endphp
  <div class="card">
  <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
                         <div class="container-xl px-4">
@@ -22,6 +25,11 @@
                         <div class="row">
                               
                             <div class="col-xl-12">
+                              @if(session('success'))
+                              <div class="alert alert-success">
+                                  {{ session('success') }}
+                              </div>
+                          @endif
                                 <!-- Account details card-->
                                 <div class="card mb-4">
                                     <div class="card-header">Profile </div>
@@ -53,32 +61,34 @@
                                                     <div class="tab-content" id="myTabContent">
                                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                             <h2>Profile Details</h2>
-                                                            <form class="user">
+                                                            <form class="user" action="{{ route('vendor.success') }}" method="POST" enctype="multipart/form-data">
+                                                              @csrf
                                                             <div class="row mb-4">
                                                               <label for="name" class="col-4 col-form-label">Title<span class="mandatory">*</span></label>
                                                               <div class="col-8">
-                                                              <select id="title" class="form-control form-control-user">
-                                                                  <option value="Company" selected>Company</option>
-                                                                  <option value="Mr.">Mr.</option>
-                                                                  <option value="Mr. and Mrs.">Mr. and Mrs.</option>
-                                                                  <option value="Ms.">Ms.</option>
+                                                              <select id="title" class="form-control form-control-user" name="title">
+                                                                <option value="Company" @selected(!empty($user->title) && $user->title == 'Company')>Company</option>
+                                            <option value="Mr." @selected(!empty($user->title) && $user->title == 'Mr.')>Mr.</option>
+                                            <option value="Mr. and Mrs." @selected(!empty($user->title) && $user->title == 'Mr. and Mrs.')>Mr. and Mrs.</option>
+                                            <option value="Ms." @selected(!empty($user->title) && $user->title == 'Ms.')>Ms.</option>
                                                               </select>
                                                               </div>                    
                                                             </div>              
                                                             <div class="row mb-4">
                                                               <label for="name" class="col-4 col-form-label">Vendor Name <span class="mandatory">*</span></label>
                                                               <div class="col-8">
-                                                                  <input id="name" class="form-control form-control-user" type="text" name="name" value="Popular Agro Ltd"   />
+                                                                  <input id="name" class="form-control form-control-user" type="text" name="company_name" value="{{$user->company_name??''}}"   />
                                                               </div>                    
                                                             </div>
                                                               <div class="form-row mb-4">                
                                                                 <label for="name" class="col-4 col-form-label">Vendor Category<span class="mandatory">*</span></label>
                                                                 <div class="col-8">
-                                                                <select id="inputState" class="form-control form-control-user">
-                                                                  <!-- <option>Choose...</option> -->
-                                                                  @foreach ($materialgroup as  $group)
-                                                                        <option value="{{$group->code}}">{{$group->code}}-{{$group->name}}</option>
-                                                                    @endforeach
+                                                                <select id="inputState" class="form-control form-control-user"  name="vendor_code">
+                                                             
+                                                                    <!-- <option>Choose...</option> -->
+                                            @foreach ($materialgroup as $group)
+                                            <option value="{{$group->code}}" @selected(!empty($user->vendor_code) && $user->vendor_code == $group->code)>{{$group->code}}-{{$group->name}}</option>
+                                            @endforeach
                                                                 </select>
                                                                 </div> 
                                                               </div>                       
@@ -87,10 +97,9 @@
                                                               <div class="form-row mb-4">  
                                                                 <label for="name" class="col-4 col-form-label">Location<span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <select id="inputState" class="form-control form-control-user">
-                                                                     
-                                                                      <option selected>Kerala</option>
-                                                                      <option>Gujarat</option>
+                                                                      <select id="inputState" class="form-control form-control-user" name="state">
+                                                                        <option value="kerala" @selected(!empty($user->state) && $user->state == 'Kerala')>Kerala</option>
+                                                                        <option value="gujarat" @selected(!empty($user->state) && $user->state == 'Gujarat')>Gujarat</option>
                                                                       
                                                                     </select>
                                                                   </div>                
@@ -99,13 +108,13 @@
                                                                 <div class="row mb-4">
                                                                   <label for="name" class="col-4 col-form-label">Mobile Number<span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="name" class="form-control form-control-user" type="text" name="name" value="91+ 7012439990"  autocomplete="Vendor Name" />
+                                                                      <input id="name" class="form-control form-control-user" type="text" name="mobileno" value="{{$user->mobileno??''}}"  autocomplete="Vendor Name" />
                                                                   </div>                    
                                                                 </div>
                                                                 <div class="row mb-4">
                                                                   <label for="name" class="col-4 col-form-label">Email Address<span class="mandatory">*</span></label>
                                                                     <div class="col-6">
-                                                                      <input id="name" class="form-control form-control-user" type="text" name="name" value="vendor@gmail.com"  autocomplete="Vendor Name" />
+                                                                      <input id="email" class="form-control form-control-user" type="text" name="email" value="{{$user->email??''}}"  autocomplete="Vendor Name" />
                                                                       <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                                                                     </div> 
                                                                     <div class="form-group text-left col-md-2">
@@ -136,84 +145,88 @@
                                                                 <div class="d-flex justify-content-end">                                                              
                                                                   <button type="submit" class="btn btn-primary ml-1">Save</button>
                                                                 </div>
-                                                            </form>
+                                                            
                                                         </div>
                                                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                             <h2>Company Profile</h2>
-                                                            <form class="user">              
+                                                                   
                                                               
                                                               <div class="row mb-4">
-                                                                <label for="name" class="col-4 col-form-label">Contact Person Name <span class="mandatory">*</span></label>
+                                                                <label for="contant_person_name" class="col-4 col-form-label">Contact Person Name <span class="mandatory">*</span></label>
                                                                 <div class="col-8">
-                                                                    <input id="name" class="form-control form-control-user" type="text" name="name" value="Anil Kumar"  autocomplete="Vendor Name" />
+                                                                    <input  class="form-control form-control-user" type="text" name="contant_person_name"  id="contant_person_name"
+                                                                    value="{{$user->contant_person_name??''}}"  />
                                                                 </div>                    
                                                               </div>
                                                               <div class="row mb-4">
-                                                                <label for="name" class="col-4 col-form-label">Designation <span class="mandatory">*</span></label>
+                                                                <label for="designation" class="col-4 col-form-label">Designation <span class="mandatory">*</span></label>
                                                                 <div class="col-8">
-                                                                    <input id="name" class="form-control form-control-user" type="text" name="name" value="Director"  autocomplete="Vendor Name" />
+                                                                    <input id="designation" class="form-control form-control-user" type="text" name="designation" value="{{$user->designation??''}}"  autocomplete="Vendor Name" />
                                                                 </div>                    
                                                               </div>
                                                                 <div class="row mb-4">
                                                                   <label for="name" class="col-4 col-form-label">MSME Category</label>
                                                                   <div class="col-8">                  
-                                                                    <select id="inputState" class="form-control form-control-user">
-                                                                      <option selected>Micro Enterpriser</option>
-                                                                      <option>Small Enterprise</option>
-                                                                      <option selected="">Medium Enterprise</option>                    
+                                                                    <select id="msme_category" class="form-control form-control-user" name="msme_category">
+                                                                      <option value="Micro Enterprise" @selected(!empty($user->msme_category) && $user->msme_category == 'Micro Enterprise')>Micro Enterprise</option>
+                                                <option value="Small Enterprise" @selected(!empty($user->msme_category) && $user->msme_category == 'Small Enterprise')>Small Enterprise</option>
+                                                <option  value="Medium Enterprise" @selected(!empty($user->msme_category) && $user->msme_category == 'Medium Enterprise')>Medium Enterprise</option>                 
                                                                     </select> 
                                                                   </div>
                                                                 </div>
                                                                 <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">Payment Terms</label>
+                                                                  <label for="payment_terms" class="col-4 col-form-label">Payment Terms</label>
                                                                   <div class="col-8">                  
-                                                                  <select class="form-control  form-control-user" id="paymentTerms">
-                                                                    <option value="" disabled selected>Select Payment Terms</option>
-                                                                    <option value="Net30">Net 30</option>
-                                                                    <option value="Net60">Net 60</option>
-                                                                    <option value="2/10 Net 30">2% Discount if Paid in 10 Days, Due in 30 Days</option>
-                                                                    <option value="EOM">End of the Month</option>
-                                                                    <option value="15days">15 Days from Invoice Date</option>
-                                                                    <option value="DueOnReceipt">Due on Receipt</option>
-                                                                    <option value="COD">Cash on Delivery</option>
-                                                                    <option value="Quarterly">Quarterly Payments</option>
-                                                                    <option value="AdvancePayment">Advance Payment Required</option>
-                                                                    <option value="Monthly">Monthly Payments</option>                    
+                                                                  <select class="form-control  form-control-user" id="payment_terms" name="payment_terms">
+                                                                    <option selected="">Select Payment Terms</option>
+                                                                    <option value="Net 30"  @selected(!empty($user->payment_terms) && $user->payment_terms == 'Net 30')>Net 30</option>
+                                                                    <option value="Net 60" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Net 60')>Net 60</option>
+                                                                    <option value=">2% Discount if Paid in 10 Days, Due in 30 Days" @selected(!empty($user->payment_terms) && $user->payment_terms == '>2% Discount if Paid in 10 Days, Due in 30 Days')>2% Discount if Paid in 10 Days, Due in 30 Days
+                                                                    </option>
+                                                                    <option value="End of the Month" @selected(!empty($user->payment_terms) && $user->payment_terms == 'End of the Month')>End of the Month</option>
+                                                                    <option value="15 Days from Invoice Date" @selected(!empty($user->payment_terms) && $user->payment_terms == '15 Days from Invoice Date')>15 Days from Invoice Date</option>
+                                                                    <option value="DueOnReceipt" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Due on Receipt')>Due on Receipt</option>
+                                                                    <option value="Cash on Delivery" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Cash on Delivery')>Cash on Delivery</option>
+                                                                    <option value="Quarterly" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Quarterly Payments')>Quarterly Payments</option>
+                                                                    <option value="AdvancePayment" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Advance Payment Required')>Advance Payment Required</option>
+                                                                    <option value="Monthly" @selected(!empty($user->payment_terms) && $user->payment_terms == 'Monthly Payments')>Monthly Payments</option>                  
                                                                   </select> 
                                                                   </div>
                                                                 </div>
                                                                 <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">Payment Method</label>
+                                                                  <label for="paymentTerms" class="col-4 col-form-label">Payment Method</label>
                                                                   <div class="col-8">                  
-                                                                  <select class="form-control  form-control-user" id="paymentTerms">
+                                                                  <select class="form-control  form-control-user" id="paymentTerms" name="payment_method">
                                                                       <option value="T" >T-Bank Transfer</option>                                        
                                                                   </select>  
-                                                                                                                  </div>
+                                                                   </div>
                                                                 </div>
                                                               <div class="d-flex justify-content-end">                                                              
                                                                 <button type="submit" class="btn btn-primary ml-1">Save</button>
                                                               </div>
-                                                            </form>
+                                                            
                                                         </div>
                                                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                                             <h2>Address Details</h2>
-                                                            <form class="user">
+                                                           
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">Address line 1 <span class="mandatory">*</span></label>
                                                             <div class="col-8">
-                                                              <input type="text" id="address" class="form-control form-control-user" autocomplete="Address">
+                                                              <input type="text" id="addressline1" name="addressline1" class="form-control form-control-user" autocomplete="Address" value="{{$user->addressline1??''}}">
                                                             </div>
                                                           </div>
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">Address line 2</label>
                                                             <div class="col-8">
-                                                              <input type="text" id="customerid" class="form-control form-control-user">
+                                                              <input type="text" id="addressline2"name="addressline2" class="form-control form-control-user"
+                                                              value="{{$user->addressline2??''}}">
                                                             </div>
                                                           </div>
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">Address line 3</label>
                                                             <div class="col-8">
-                                                              <input type="text" id="customerid" class="form-control form-control-user">
+                                                              <input type="text" id="addressline3"name="addressline3" class="form-control form-control-user"
+                                                              value="{{$user->addressline3??''}}">
                                                             </div>
                                                           </div>
 
@@ -221,7 +234,7 @@
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">Country</label>
                                                             <div class="col-8">
-                                                            <select class="form-control form-control-user">
+                                                            <select class="form-control form-control-user" name="country_code">
                                                                 <option value="IN">India</option>
                                                               </select>
                                                             </div>
@@ -229,7 +242,7 @@
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">State</label>
                                                             <div class="col-8">
-                                                            <select class="form-control form-control-user">
+                                                            <select class="form-control form-control-user" name="state">
                                                                 <option value="KL">Kerala</option>
                                                               </select>
                                                             </div>
@@ -237,37 +250,37 @@
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">District</label>
                                                             <div class="col-8">
-                                                              <input type="text" class="form-control form-control-user" value="Ernakulam">
+                                                              <input type="text" class="form-control form-control-user" name="district" value="{{$user->district??''}}">
                                                             </div>
                                                           </div>
                                                         
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">City</label>
                                                             <div class="col-8">
-                                                              <input type="text" class="form-control form-control-user">
+                                                              <input type="text" class="form-control form-control-user" name="city" value="{{$user->city??''}}">
                                                             </div>
                                                           </div>
                                                           <div class="row mb-4">
                                                             <label class="col-4 col-form-label">Pin</label>
                                                             <div class="col-8">
-                                                            <input type="text" class="form-control form-control-user">
+                                                            <input type="text" class="form-control form-control-user" name="pin" value="{{$user->pin??''}}">
                                                             </div>
                                                           </div>
                                                           
                                                           <div class="d-flex justify-content-end">                  
-                                                              <button type="button" class="btn btn-primary  ml-1" >Save</button>
+                                                              <button type="submit" class="btn btn-primary  ml-1" >Save</button>
                                                           </div>
-                                                        </form>
+                                                        
                                                         </div>
                                                         <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
                                                             <h2>Indian Regulatory Details</h2>
-                                                            <form class="user">
+                                                           
                                                               <div class="panel">
                                                               </br>
                                                                 <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">PAN Number <span class="mandatory">*</span></label>
+                                                                  <label for="pan_number" class="col-4 col-form-label">PAN Number <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="phone" class="form-control form-control-user" type="text" name="name" :value="old('phone')"  autocomplete="Phone Number" />
+                                                                      <input id="pan_number" class="form-control form-control-user" type="text" name="pan_number"  value="{{$user->pan_number??''}}"/>
                                                                   </div>
 
                                                                   <div class="col-12">
@@ -278,98 +291,113 @@
                                                               <div class="row mb-4">
                                                                   <label for="name" class="col-4 col-form-label">GSTIN <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="gstin" class="form-control form-control-user" type="text" name="gstin" :value="old('gstin')"  autocomplete="GSTIN" />
+                                                                      <input id="gstin" class="form-control form-control-user" type="text" name="gstin" value="{{$user->gstin??''}}" />
                                                                   </div>                    
                                                               </div>
                                                               <div class="row mb-4">
                                                                   <label for="name" class="col-4 col-form-label">Bank Account Number <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="phone" class="form-control form-control-user" type="text" name="accountnumber" :value="old('phone')"  autocomplete="Phone Number" />
+                                                                      <input id="bank_account" class="form-control form-control-user" type="text" name="bank_account" value="{{$user->bank_account??''}}" />
                                                                   </div>                    
                                                               </div>
                                                               <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">Confirm Bank Account Number <span class="mandatory">*</span></label>
+                                                                  <label for="confirm_bank_account" class="col-4 col-form-label">Confirm Bank Account Number <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="phone" class="form-control form-control-user" type="text" name="accountnumber" :value="old('phone')"  autocomplete="Phone Number" />
+                                                                      <input id="confirm_bank_account" class="form-control form-control-user" type="text"  value="{{$user->bank_account??''}}" />
                                                                   </div>                    
                                                               </div>
                                                               <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">Bank Name <span class="mandatory">*</span></label>
+                                                                  <label for="bank_name" class="col-4 col-form-label">Bank Name <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="phone" class="form-control form-control-user" type="text" name="accountnumber" :value="old('phone')"  autocomplete="Phone Number" />
+                                                                      <input id="bank_name" class="form-control form-control-user" type="text" name="bank_name" value="{{$user->bank_name??''}}" />
                                                                   </div>                    
                                                               </div>
                                                               <div class="row mb-4">
-                                                                  <label for="name" class="col-4 col-form-label">IFSC Code <span class="mandatory">*</span></label>
+                                                                  <label for="bank_ifsc" class="col-4 col-form-label">IFSC Code <span class="mandatory">*</span></label>
                                                                   <div class="col-8">
-                                                                      <input id="phone" class="form-control form-control-user" type="text" name="accountnumber" :value="old('phone')"  autocomplete="Phone Number" />
+                                                                      <input id="bank_ifsc" class="form-control form-control-user" type="text"  name="bank_ifsc" value="{{$user->bank_ifsc??''}}" />
                                                                   </div>                    
                                                               </div>
                                                               
                                                           </div>
-                                                          <div class="d-flex justify-content-end">
-                                                                 
-                                                                    <button type="button" class="btn btn-primary ml-1" >Save</button>
-                                                                </div>
-                                                              </form>
+                                                          <div class="d-flex justify-content-end">                  
+                                                            <button type="submit" class="btn btn-primary  ml-1" >Save</button>
+                                                        </div>
+                                                            
                                                         </div>
                                                         <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
                                                             <h2>Documents</h2>
-                                                            <form class="user">
                                                               <div class="panel">
                                                                       <div class="row mb-4">
                                                                           <label for="name" class="col-4 col-form-label">Upload PAN <span class="mandatory">*</span></label>
+                                                                        
                                                                               <div class="col-8">
-
+                                                                               
                                                                               <div class="custom-file-upload">
                                                                                   <label for="file-upload" class="custom-file-label form-control-user">Choose File</label>
-                                                                                  <input id="file-upload" type="file" class="form-control form-control-user">
+                                                                                  <input id="file-upload" type="file" class="form-control form-control-user" name="upload_pan">
                                                                               </div>
                                                                                   
                                                                               </div>
+                                                                              @if(!empty($upload_pan->file_path))
+                                                                              <image src='{{url('/')}} {{Storage::url($upload_pan->file_path)}}' width="70" height="70">
+                                                                              @endif
+
                                                                       </div>
                                                                       <div class="row mb-4">
                                                                           <label for="name" class="col-4 col-form-label">Upload GSTIN </label>
                                                                               <div class="col-8">
                                                                               <div class="custom-file-upload">
                                                                                   <label for="file-upload" class="custom-file-label form-control-user">Choose File</label>
-                                                                                  <input id="file-upload" type="file" class="form-control form-control-user">
+                                                                                  <input id="file-upload" type="file" class="form-control form-control-user" name="upload_gstin">
                                                                               </div>
                                                                                   
                                                                               </div>
+                                                                              @if(!empty($upload_gstin->file_path))
+                                                                              <image src='{{url('/')}} {{Storage::url($upload_gstin->file_path)}}' width="70" height="70">
+                                                                              @endif
                                                                       </div>
                                                                       <div class="row mb-4">
                                                                           <label for="name" class="col-4 col-form-label">Upload MSME Certificate </label>
                                                                               <div class="col-8">
                                                                               <div class="custom-file-upload">
                                                                                   <label for="file-upload" class="custom-file-label form-control-user">Choose File</label>
-                                                                                  <input id="file-upload" type="file" class="form-control form-control-user">
+                                                                                  <input id="file-upload" type="file" class="form-control form-control-user" name="upload_msme_certificate">
                                                                               </div>
                                                                               </div>
+                                                                              @if(!empty($upload_msme_certificate->file_path))
+                                        <image src='{{url('/')}} {{Storage::url($upload_msme_certificate->file_path)}}' width="70" height="70">
+                                        @endif
                                                                       </div>
                                                                         <div class="row mb-4">
                                                                           <label for="name" class="col-4 col-form-label">Upload Cancelled Cheque <span class="mandatory">*</span></label>
                                                                               <div class="col-8">
                                                                                 <div class="custom-file-upload">
                                                                                     <label for="file-upload" class="custom-file-label form-control-user">Choose File</label>
-                                                                                    <input id="file-upload" type="file" class="form-control form-control-user">
+                                                                                    <input id="file-upload" type="file" class="form-control form-control-user" name="upload_cancelled_cheque">
                                                                                 </div>
                                                                               </div>
+                                                                              @if(!empty($upload_cancelled_cheque->file_path))
+                                                                              <image src='{{url('/')}} {{Storage::url($upload_cancelled_cheque->file_path)}}' width="70" height="70">
+                                                                              @endif
                                                                         </div>
                                                                         <div class="row mb-4">
                                                                           <label for="name" class="col-4 col-form-label">Upload Tax Excemption Certificate </label>
                                                                               <div class="col-8">
                                                                                 <div class="custom-file-upload">
                                                                                     <label for="file-upload" class="custom-file-label form-control-user">Choose File</label>
-                                                                                    <input id="file-upload" type="file" class="form-control form-control-user">
+                                                                                    <input id="file-upload" type="file" class="form-control form-control-user" name="upload_tax_excemption_certificate">
                                                                                 </div>
                                                                               </div>
+
+                                                                              @if(!empty($upload_exemption_certificate->file_path))
+                                                                              <image src='{{url('/')}} {{Storage::url($upload_exemption_certificate->file_path)}}' width="70" height="70">
+                                                                              @endif
                                                                         </div>
                                                                 </div>
-
+                                                                <input type="hidden" name="slugtype" value="profile">
                                                                 <div class="d-flex justify-content-end">
-                                                                        
-                                                                        <button type="button" class="btn btn-primary ml-1" >Save</button>
+                                                                        <button type="submit" class="btn btn-primary ml-1" >Save</button>
                                                                   </div>
 
                                                                 </form>

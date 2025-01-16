@@ -27,13 +27,17 @@
 
 
 
-@can('vendor-profile-view')
+
+@php
+$statusData = DB::table('vendor_details')->where('user_id',Auth::user()->id)->first();
+@endphp
+@if(Auth::user()->role_id==5 && !empty($statusData->status) && $statusData->status=='Approve')
 <li class="nav-item">
     <a class="nav-link" href="{{ route('vendor.profile') }}">
     <i class="fas fa-fw fa-user"></i>
         <span>Profile</span></a>
 </li>
-@endcan
+@endif
 @can(['vendor-list', 'vendor-approve'])
 
 <li class="nav-item dropdoWn">

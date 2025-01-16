@@ -24,10 +24,12 @@ Route::post('/save-vendor', [VendorController::class, 'save_vendor'])->name('ven
 Route::post('/status-vendor', [VendorController::class, 'status_vendor'])->name('status-vendor');
 Route::get('/vendorregistration', [VendorController::class, 'register'])->name('vendor.creation');
 Route::post('/vendor-success', [VendorController::class, 'saveasdraft'])->name('vendor.success');
-Route::middleware(['auth', 'role:Vendor'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
   Route::get('/vendorprofile', [VendorController::class, 'vendor_profile'])->name('vendor.profile');
   Route::get('/security', [VendorController::class, 'vendor_changepassword'])->name('vendor.security');
+  Route::post('/actionChangePassword', [VendorController::class, 'actionChangePassword'])->name('vendor.change.password');
+  
 });
 
 Route::middleware(['auth', 'role:Purchase Admin|Function Head|CFO'])->group(function () {
